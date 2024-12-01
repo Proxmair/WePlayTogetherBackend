@@ -1,8 +1,11 @@
 import express from "express";
-import { loginUser } from "../controller/authController.js";
+import { loginUser, loadUser } from "../controller/authController.js";
+import isAuthenticated from "../utils/isAuthenticated.js";
 
 const authRouter = express.Router();
 
-authRouter.get("/login", loginUser);
+authRouter.post("/login", loginUser);
+authRouter.get("/token",isAuthenticated,loadUser);
+
 
 export default authRouter;
